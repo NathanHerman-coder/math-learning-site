@@ -1,32 +1,32 @@
-import React from "react";
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { useState } from "react";
- const Home= () => {
-    const [niveau,setNiveau]=useState('');
-    const handleNiveauChange= (event) =>{
-       setNiveau (event.target.value);
-    }
-    return (
-        <div>
-            <Navbar/>
-            <section className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
-                <h2 className="text-4xl font-bold text-center">Bienvenue sur Apprendre les Mathématiques</h2>
-                <p className="text-lg text-center mb-8">Explorez des leçons intéractives, des exercices pratiques et bien plus encore!</p>
-                <a href="/cour" className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700">Commencer le cour</a>
-           </section>
-           <select className="mt-4 p-2 text-center boder-rounded" value={niveau} onChange={handleNiveauChange} >
-            <option value="">Selectionnez un niveau</option>
-            <option value="debutant">Debutant</option>
-            <option value="intermediaire">Intermediaire</option>
-            <option value="avance">Avancé</option>
-           </select>
+import React, { useState } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { Menu, X } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
-            <Footer/>
-        </div>
-            
-            
-    );
-}
+const Home = () => {
+  const [niveau, setNiveau] = useState("");
+  const [open, setOpen] = useState(false);
+  const [darkMode,setDarkMode] = useState(false)
+  const navigate = useNavigate();
+
+  const handleNiveauChange = (event) => {
+    setNiveau(event.target.value);
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login"); // redirige vers la page de connexion
+  };
+
+  return (
+    <div className={darkMode?"dark":""}>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Header/>
+      <Footer />
+    </div>
+  );
+};
+
 export default Home;

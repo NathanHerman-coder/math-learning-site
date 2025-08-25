@@ -1,17 +1,25 @@
-import React from 'react';
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
-import Cours from './pages/Cour';
-
+import LoginForm from './pages/LoginForm';
+import PrivateRoute from './components/PrivateRoute';
+import Form from './pages/Form'
+import InscriptionForm from './pages/InscriptionForm';
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/cours" element={<Cours/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/profil" element={<InscriptionForm/>}/>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/form" element={
+              <PrivateRoute>
+                <Form />
+              </PrivateRoute>
+            }
+          />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
-  export default App;
+
+export default App;
